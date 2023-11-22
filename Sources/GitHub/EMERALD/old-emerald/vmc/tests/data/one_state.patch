@@ -1,0 +1,36 @@
+--- one_state.desc.c	2018-01-01 00:00:00.000000000 +0100
++++ one_state.desc.c	2018-01-01 00:00:00.000000000 +0100
+@@ -13,6 +13,7 @@
+ int interpret(State *state)
+ {
+   u32 pc;
++  int a;		// This is a
+   long long addtototalbytecodes = 0;
+   unsigned char opcode;
+ #if defined(INTERPRETERLOCALS)
+--- one_state.desc_i.h	2018-01-01 00:00:00.000000000 +0100
++++ one_state.desc_i.h	2018-01-01 00:00:00.000000000 +0100
+@@ -56,10 +56,13 @@
+ typedef struct State {
+   u32 firstThing;
+   u32 pc;
++  int a;		// This is a
+ } State;
+ #define F_SYNCH() (\
++  state->a = a,\
+   state->pc = pc)
+ #define F_UNSYNCH() (\
++  a = state->a,\
+   pc = state->pc )
+ #ifdef COUNTBYTECODES
+ #define SYNCH() (\
+@@ -71,7 +74,9 @@
+   addtototalbytecodes = 0 )
+ #else // COUNTBYTECODES
+ #define SYNCH() (\
++  state->a = a,\
+   state->pc = pc)
+ #define UNSYNCH() (\
++  a = state->a,\
+   pc = state->pc )
+ #endif

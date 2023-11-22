@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+
+   <description url="emeraldlanguage.sf.net/updates">
+      
+   </description>
+   <feature url="features/dk.diku.emerald.feature_1.0.0.jar" id="dk.diku.emerald.feature" version="1.0.0">
+      <category name="Emerald Language Plugin"/>
+   </feature>
+   <feature url="features/dk.diku.emerald.feature_1.1.0.jar" id="dk.diku.emerald.feature" version="1.1.0">
+      <category name="Emerald Language Plugin"/>
+   </feature>
+   <category-def name="Emerald Language Plugin" label="Emerald"/>
+</site>

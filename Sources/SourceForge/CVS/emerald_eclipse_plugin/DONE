@@ -1,0 +1,98 @@
+30/11/04	
+			make emx compiled for distribution. SOLVED by making ARCH=i686mt (multithreading) and adding -DDISTRIBUTED in CPFLAGS in Makefile
+
+			Done: //TODO check deprecated methods
+				
+			Done: //TODO Make a daemon starter
+			Have made a daemon (emx) starter with options to run as root host or connecting to a root host.
+			
+			Added: //TODO Make launcher with filename from editor
+
+01/12/04
+			Done: //TODO Make launcher with filename from editor	
+
+02/12/04
+			Done: //TODO get colors into a preferences page
+
+			Done: //TODO Make Tabwidth in preferences
+
+			added: TODO Make dedicated emerald console
+			The default console does not seem to be powerful enough to run emerald.
+
+06/12/04
+			Fiddled with the launchConfigurations - they did not save the settings between launches. stupid error. Was corrected by subclassing AbstractLaunchConfigurationTabGroup instead of ILaunchConfigurationTabGroup.
+			
+07/12/04
+			Worked on finding an alternative to the console for running emx. I think i need to use the CDT approach.
+			
+			Done: TODO Make Run-as launcher
+			Done: TODO Shortcut does not do anything
+				Implemented the "Run as.."-shortcut to work on active editor.
+				
+08/12/04
+			Done: TODO Make dedicated emerald console
+				Will use the default console to launch Emerald files as there is no better alternatives at the moment. Takes input and gives output and error output. Only thing lacking is that for some reason it does not print "Emerald listening on port 16104 3ee8, epoch 31891 7c93"
+				In Eclipse 3.1M3 there has been added a IOConsole class that should be a much enhanced shell replacement	compared to the default console. But this is not yet stable and should not yet be depended upon.
+				
+			Done: TODO Need to find out how to have input in this view. (EmeraldConsole.java)
+				A shell replacement will be added to the Eclipse 3.1 platform.
+				
+			Done: TODO Make New Emerald File wizard
+				Created a new Emerald File Wizard and an Emerald Wizard group
+				
+			added: TODO Add Username and date to new file wizard
+
+			added: TODO Make a "add Emerald compiler to this project" button on projects
+				
+10/12/04
+			Done: TODO Make New project Wizard
+				I have made a new Emerald project wizard that creates a new empty wizard and adds the emerald builder to the project.
+			
+			added: TODO Add keyboard-shortcuts to labels (add &'s in label names)
+			
+			Removed the printout to System.out of the compileroutput as all information now gets delivered to the user through error markers. 
+			Multiline errors now get appended to one line with "<-" between them, indicating its a traceback.
+			
+			added: TODO must find out if the multiline errors really are tracebacks
+			
+13/12/04
+			Applied for sourceforge.net project with unix-name "emerald", but it seemed to be occupied although there is no projects named emerald.
+			Done some cleanup of the code (System.out's and wrong comments)
+			
+			Done: TODO Make an "add Emerald compiler to this project" button on projects			
+	
+03/01/05
+			Done: TODO Add capability to add arbitrary command-line flags to emx in the launch configuration
+			
+			Done: 	TODO Here is a hardcoded path (EmeraldLaunchConfigurationDelegate.java)
+						TODO Move hardcoded values to preferences (emeraldIncrementalProjectBuilder.java)
+
+			Done: TODO Check syntax of error messages in Failtest
+			
+			Done: TODO must find out if the multiline errors really are tracebacks
+				They are cascading errors.
+				
+24/01/05
+			Finished support for the new launch configuration with multiple remote launches through ssh
+			
+			
+    //TODO make multiple launch sortable and make sure they are started one at a time
+    //TODO make use of scp to copy files to remote hosts
+    //TODO copy from launchstore to files? column.
+    //TODO Make hack: tell people to copy in PATH-variable
+	//TODO Get PATH variable from environment
+        
+REMEMBER: DebugPlugin.getDefault().getLaunchManager().getNativeEnvironment()
+
+	//TODO Hardcoded ssh path here.
+	//TODO Hardcoded scp path here.
+	//TODO Make an option to monitor/not monitor commands in the multiple launcher.
+	//TODO Make the sorting column and sorting direction of the table in the multiple launcher persistent.
+	//TODO hardcoded remote directory location - implemented workingDirectory option
+	//TODO -U is always added as an option to emx
+	
+	//TODO Remove remnants of Systems Path preference
+	//TODO Cleanup EmeraldMultipleTab control creation code
+
+    //TODO Make an error message if compiler process fails
+	

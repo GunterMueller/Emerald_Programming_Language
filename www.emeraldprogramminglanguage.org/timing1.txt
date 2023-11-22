@@ -1,0 +1,158 @@
+Feb. 21st, 1986, the first timing of Oz invocations took place.
+The purpose was to obtain a (very conservative) upper bound on the execution
+time for Emerald object running on a single processor.
+The objects involved were handtranslated from Emerald to a home-brewed
+P-code and run using an interpreter written in C as part of the Oz kernel.
+The interpreter and kernel are full of debug calls, the interpreter was
+not written for efficiency, and considerable housekeeping is done
+before executing each P-code instruction.  The timings were done on uw-wally,
+a VAX 11/750 running Unix 4.2bsd.
+
+The example choosen for timing is a pair of processes alternating turns
+printing (one prints HI, the other HO) by synchronizing through a monitor
+object.
+Each interation includes:
+    2   signal/wait exchanges (including 2 process switches)
+    2   global object invocations
+    2   interations of a simple (infinite) loop
+    2   monitor entries
+    2   monitor exits
+(Printing was omitted when doing the timing.)
+The program is included below as well as a version where the P-code
+instructions have been added as comments.
+
+The result:
+
+100000 iterations, total time 516 seconds.
+Average per iteration 5.16 milliseconds or about
+
+                           2.5 ms
+
+for a single global invocation/process switch/monitor entry/exit sequence.
+
+The result is considered an upper bound since eventually
+    1)  the compiler will generate real code.
+    2)  the critical part of the kernel will be assembly coded.
+    3)  interrupts will not be polled after each P-code.
+It would not be unreasonable to expect that the above figure be reduced
+by an order of magnitude.
+
+------------------------------------------------------------------------
+The following is the program used.
+
+const initialObject == object initialObject
+  process
+    const newobj == 
+      object innerObject
+	export Hi, Ho
+	monitor
+	  var flip : Integer
+	  var c : Condition
+	  
+	  operation Hi
+	    if flip != 0 then
+	      wait c
+	    end if
+	    % print "hi"
+	    flip <- 1
+	    signal c
+	  end hi
+	  operation Ho
+	    if flip != 0 then
+	      wait c
+	    end if
+	    % print "ho"
+	    flip <- 1
+	    signal c
+	  end ho
+	end monitor
+	process
+	  loop
+	    self.ho
+	  end loop
+	end process
+      end innerObject
+
+    loop
+      newobj.hi
+    end loop
+  end process
+end initialObject
+------------------------------------------------------------------------
+The following is the program with the handtranslation included as comments.
+Roughly, each "--" corresponds to a byte code.
+Most of the parameters to the byte codes are offsets into either the
+activation record (negatives) or the current object (usually positive).
+
+const initialObject == object initialObject
+    const newobj == 
+      -- at offset +8
+      object innerObject
+	export Hi, Ho
+            -- operations 2 and 3
+	monitor
+          -- lock in +8 queue in +16
+	  var flip : Integer
+            -- in offset +24
+	  var c : Condition
+	    -- in offset +32
+	  operation Hi
+            -- monitor entry +8
+	    if flip != 0 then
+              -- if l+24 == 0 jump to L1
+	      wait c
+              -- wait +32
+	    end if
+            -- label L1:
+	    % print "HI"
+            -- print HI
+	    flip <- 1
+            -- set var +24 to 1
+	    signal c
+            -- signal +32
+            -- monitor exit +8
+	  end hi
+          -- return
+	  operation Ho
+            -- monitor entry +8
+	    if flip != 0 then
+              -- if +24 == 0 jump L2
+	      wait c
+              -- wait +32
+	    end if
+            -- Label L2
+	    % print "HO"
+            -- print HO
+	    flip <- 0
+            -- set var +24 to 0
+	    signal c
+            -- signal +32
+	  end ho
+          -- monitor exit +8
+          -- return
+	end monitor
+	process
+        -- start process
+	  loop
+          -- label L3
+	    self.ho
+            -- store self into -36
+            -- local invoke -36 3
+	  end loop
+          -- jump L3
+	end process
+        -- process done
+      end innerObject
+
+  process
+      -- initial startup of the primordial object.
+      -- create an object and store ref into +8
+    loop
+      -- Label L4
+      newobj.hi
+        -- global invoke +8 2
+    end loop
+      -- jump L4
+  end process
+  -- process done
+end initialObject

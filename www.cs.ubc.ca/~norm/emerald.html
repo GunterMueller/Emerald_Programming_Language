@@ -1,0 +1,76 @@
+<TITLE>The Emerald Distributed Programming Language</TITLE>
+
+<H1>The Emerald Distributed Programming Language</H1>
+
+<H2>Introduction</H2>
+
+This page describes the research on the Emerald Distributed Programming
+Language.
+
+<EM>Please be patient, this area is under construction.  Thanks!</EM>
+
+<H2>Objectives</H2>
+
+<UL>
+  <LI> Develop and distribute an object-oriented programming language and system
+    incorporating light-weight object migration.
+  <LI> Investigate the issues in using such languages for distributed
+    application development, particularly the areas of reliability and
+    availability. 
+</UL>
+
+<H2>Funding</H2>
+
+<H2>Project Participants</H2>
+
+
+<UL>
+<LI>
+  <H3>Faculty Members</H3>
+    <UL>
+    <LI><A HREF="http://www.cs.ubc.ca/userinfo/user/norm">Norm Hutchinson</A><P>
+    </UL>
+<LI>
+  <H3>Gradate Students</H3>
+    <UL>
+    <LI>None at this time.
+    </UL>
+</UL>
+
+<H2>Literature</H2>
+
+<UL>
+<LI> <A HREF="emerald/papers/Report.ps">
+     The Emerald Language Report</A>
+<LI> <A HREF="emerald/papers/Primer.ps">
+     An Emerald Primer</A>
+<LI> <A HREF="emerald/papers/HutchinsonThesis.ps">
+     Norm Hutchinson's thesis</A>
+<LI> <A HREF="emerald/papers/emeraldtypes.ps">
+     Typechecking Polymorphism in Emerald</A>
+<LI> <A HREF="emerald/papers/forward.ps">
+     Adding a Forwarder Object to Emerald</A>
+</UL>
+    
+<H2>Software</H2>
+Emerald is implemented in a style similar to Java (and Pascal, and Simula,
+and ...):  the Emerald compiler
+(which is writen in Emerald, of course) generates byte codes which are then
+interpreted by a relatively portable interpreter.  The interpreter takes
+care of finding remote objects, performing remote invocations, moving
+objects, and doing both local and distributed garbage collection.
+<P>
+This is the second implementation of Emerald.  The original one generated
+machine code for the machine of the year (originally Vax, then Sun3, Sun4,
+and Alpha).  It is available from <A
+HREF="http://www.diku.dk/research-groups/distlab">DIKU, at the University of
+Copenhagen, Denmark</A>.  Their web pages are kind of a mess right now, but
+they'll be back.
+<P>
+The implementation for Linux, FreeBSD, SPARC/Solaris, HP-PA/HPUX, and
+Win95/NT is now available, look <A HREF="http://www.cs.ubc.ca/nest/dsg/emerald/dist/dist.html">here</A>
+for details. 
+<P>
+<ADDRESS>Created by 
+<A HREF="http://www.cs.ubc.ca/userinfo/user/norm"> Norm
+Hutchinson</A>, 05 June 1995. Last updated: 19 February 1998</A>

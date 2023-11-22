@@ -1,0 +1,92 @@
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>The Emerald programming language</title>
+	</head>
+
+	<body bgcolor="#55ff55">
+		<h1>The Emerald Programming Language</h1>
+		<table>
+			<tr>
+				<td valign="top">This website documents the history of the Emerald programming language.
+					<p>Emerald is a distributed, object-oriented programming language that was developed at the University of Washington starting in 1984. The goal of Emerald was to simplify the construction of distributed applications.  This goal was reflected at every level of the system: its object structure, the programming language design, the compiler implementation, and the run-time support. </p>
+					<p>A short Emerald program (affectionately known as &ldquo;<a href="http://en.wikipedia.org/wiki/Kilroy_was_here">Kilroy was here</a>&rdquo;) is shown on the right.</p>
+					<p>The paper describing Emerald which appears in the proceedings of Third ACN SIGPLAN History of Programming Language Conference. (<a href="authorsVersion.pdf">pdf</a>) <br>
+						<font size="-2">This is the authors' version of the work. It is posted here by permission of ACM for your personal use. Not for redistribution. The definitive version was published in Proceedings of the third ACM SIGPLAN conference on History of programming languages 2007,  San Diego, California, June 09 - 10, 2007, pp. 11-1&#150;11-51. <a href="http://doi.acm.org/10.1145/1238844.1238855">http://doi.acm.org/10.1145/1238844.1238855</a></font></p>
+					<p></p>
+				</td>
+				<td valign="top" bgcolor="#33dd33" bordercolor="black">
+					<pre><b>const</b> Kilroy &larr; <b> object</b> Kilroy
+  <b>process</b>
+    <b>const</b> origin &larr; <b> locate</b> <b>self</b>
+    <b>const</b> up &larr; origin.getActiveNodes
+    <b>for</b> e <b>in</b> up
+      	<b>const</b> there &larr; e.getTheNode
+      	<b>move</b> <b>self</b> <b>to</b> there
+    <b>end</b> <b>for</b>
+    <b>move</b> <b>self</b> <b>to</b> origin
+  <b>end</b> process
+<b>end</b> Kilroy</pre>
+				</td>
+			</tr>
+		</table>
+		<h3>Historical Documents</h3>
+		<ul>
+			<li>Eden Invocation Timings
+				<ul>
+					<li>8 Sept 1983
+						<ul>
+							<li><a href="Eden Invocation Timings 8 Sept 1983 p1.JPG">Page 1</a>
+							<li><a href="Eden Invocation Timings 8 Sept 1983 p2.JPG">Page 2</a>
+							<li><a href="Eden Invocation Timings 8 Sept 1983 p3.JPG">Page 3</a>
+						</ul>
+					<li><a href="Eden Invocation Timing 24 Oct 1983.JPG">24 Oct 1983</a>
+					<li><a href="Why%20Eden%20Slow%20note%2018%20Nov%201983.pdf">Why is Eden Slow? (18 Nov 1983)</a>
+				</ul>
+			<li><a href="Getting to Oz (1984 Apr 27).pdf">Getting to Oz (27 Apr 1984)</a>
+			<li><a href="Minutes 18 Mar 1985.pdf">Minutes (18 Mar 1985)</a>
+			<li><a href="Oz-data-structure-Current-Pick.tiff">The whiteboard in Norm and Eric's office</a>
+			<li><a href="versions">Emerald Versions 1985 and 1986</a>
+			<li><a href="AbCon diagram from TSE paper.pdf">AbCon diagram from TSE paper</a>
+			<li><a href="Groups+Move.pdf">An early discussion of object groups in Emerald</a>
+			<li>Early Emerald Invocation timings
+				<ul>
+					<li><a href="timing1.txt">February 21, 1986<a></a></a>
+					<li><a href="timing2.txt">March 13, 1986<a></a></a>
+					<li><a href="timing3.txt">March 18, 1986<a></a></a>
+					<li><a href="invoke.txt">March 19, 1986<a></a></a>
+				</ul>
+		</ul>
+		<h3>Hysterical Documents</h3>
+		<ul>
+			<li><a href="Referee report UCB student.jpg.JPG">A review of the 1987 SOSP paper by a UCB student</a>
+		</ul>
+		<h3>Published Papers</h3>
+		<ul>
+			<li><a href="OOPSLA-86-paper.pdf">Object Structure in the Emerald System</a>, Oopsla 1986.
+			<li><a href="SOSP-87-extended-abstract.pdf">Fine-Grained Mobility in the Emerald System</a>, Symposium on Operating System Principles, 1987 (Extended Abstract).
+			<li><a href="TOCS-1988-paper.pdf">Fine-Grained Mobility in the Emerald System</a>, Transactions on Computer Systems, 1988.</A>
+			<li><a href="TSE-1991-paper.pdf">Emerald: A General Purpose Programming Language</a>, Transactions on Software Engineering, 1991.
+			<li><a href="Raj_ComputerJournal.pdf">A Compositional Model for Software Reuse</a>, The Computer Journal, 1989.
+		</ul>
+		<h3>Non published papers</h3>
+		<ul>
+			<li><a href="nil.pdf">The Lattice of Data Type, or Much Ado about NIL</a>, somewhere between 1987 and 1991.
+			<li><a href="guide.pdf">The Emerald System User's Guide</a>, University of Washington, November, 1988.
+			<li><a href="persistence.pdf">An Efficient Implementation of Distributed Object Persistence</a>, July 1989.
+			<li><a href="types.pdf">Typechecking Polymorphism in Emerald</a>, December 1990.
+			<li><a href="languagereport-1991.pdf">The Emerald Programming Language Report</a>, 1991.
+		</ul>
+		<h3>Ph.D. Theses</h3>
+		<ul>
+			<li><a href="Thesis-Eric-A4-formatted.pdf">Eric Jul's thesis</a>
+			<li><a href="HutchinsonThesis.pdf">Norm Hutchinson's thesis</a>
+			<li><a href="diku-93-01.pdf">Niels Christian Juul's thesis</a>
+		</ul>
+		<h3>Current (more-or-less) Emerald information</h3>
+		<li><a href="http://sourceforge.net/projects/emeraldlanguage/">Emerald on Source Forge</a>
+		<li><a href="http://www.cs.ubc.ca/nest/dsg/emerald/emerald.html">Emerald at UBC</a>
+	</body>
+
+</html>

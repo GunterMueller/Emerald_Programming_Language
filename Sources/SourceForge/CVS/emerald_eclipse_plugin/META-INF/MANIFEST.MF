@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-Name: Emerald Plug-in
+Bundle-SymbolicName: dk.diku.emerald
+Bundle-Version: 1.1.0
+Bundle-ClassPath: emerald.jar
+Bundle-Activator: dk.diku.emerald.EmeraldPlugin
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.workbench.texteditor,
+  org.eclipse.ui.workbench,
+ org.eclipse.jface.text,
+ org.eclipse.ui.editors,
+ org.eclipse.core.resources,
+ org.eclipse.debug.core,
+ org.eclipse.debug.ui,
+ org.eclipse.ui.views,
+ org.eclipse.ui.ide,
+ org.eclipse.ui.console
+Eclipse-AutoStart: true

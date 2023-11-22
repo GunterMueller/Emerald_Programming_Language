@@ -1,0 +1,54 @@
+Description of versions:
+
+Version 1.0 started 1985-07-10:
+    Used a byte code interpreter.
+    The old Eden kernel was used for booting.
+    Before interpreting each byte code, the main loop of Eden was cycled.
+    Emerald programs were handtranslated into byte codes.
+    
+Version 2.0 started 1986-09-14:
+    Still used the byte code interpreter.
+    Only change was to conform to a revision of the kernel data structures.
+
+Version 3.0 started 1986-02-14:
+    Revised version of kernel data structures.
+    Timing document: timing1
+
+Version 3.1 started 1986-02-24:
+    Interpreter thrown out; handtranslating to VAX assembler code.
+    Handtranslated to VAX assembly code.
+    Removed the interpreter.
+    Assembly code makes kernel calls by 'jsb'ing to a kernel stub
+    which sets up a call to the real kernel call coded in C.
+    Timing document:  timing2, of March 13th, 1986.
+
+Version 3.2 started 1986-03-15:
+    Optimized version of the C-code:
+    reduced the number of "calls"
+    put local variables into registers.
+    Reduced the number of calls to the Eden mainloop by testing to see
+    if it is empty before calling it.
+
+Version 3.3 started March 17th:
+    Optimized signal and wait but introduced bugs (ie. it didn't work).
+
+Version 3.4 started March 18th:
+    Avoided calls to the C-part of the kernel when monitor and condition
+    queues are empty.
+    Timing document: timing3 as of March 18th, 1986.
+
+Version 3.5 started March 18th.
+    Linked in the first compiled program and ran it on March 24th, 1986!
+
+Version 4.0 started April 3rd, 1986.
+    Major revisions of what code looks like in preperation for dynamic
+    loading of code.
+
+Version 4.1 started April 17th, 1986.
+    Implementation of remote invocations started.
+
+Version 5.0 started May 10th, 1986.
+    Code loading.
+
+Version 5.1 started May 15th, 1986.
+    Register allocation modified.

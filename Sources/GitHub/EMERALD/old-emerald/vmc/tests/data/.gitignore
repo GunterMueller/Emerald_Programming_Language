@@ -1,0 +1,8 @@
+vmc
+*.c
+*.h
+!empty.desc.c
+!empty.desc.h
+!empty.desc_i.h
+*.orig
+*.rej

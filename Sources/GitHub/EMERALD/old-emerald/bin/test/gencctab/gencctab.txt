@@ -1,0 +1,6 @@
+Generating EMSTREAM
+Generating STRING
+Generating RAND
+Generating MISK
+Skipping BANI
+Skipping REGEXP

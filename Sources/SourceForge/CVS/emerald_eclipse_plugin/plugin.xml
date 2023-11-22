@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IProject"
+            id="dk.diku.emerald.emeraldAddSimpleProjectBuilder">
+         <action
+               enablesFor="1"
+               label="Add emerald builder to this project"
+               class="dk.diku.emerald.EmeraldProjectActionDelegate"
+               id="dk.diku.emerald.addSimpleBuilder"/>
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="dk.diku.emerald.EmeraldEditor"
+            icon="icons/emerald2.gif"
+            name="Emerald Editor"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            id="dk.diku.emerald.EmeraldEditor"
+            extensions="m"/>
+   </extension>
+    <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Emerald Category"
+            id="dk.diku.emerald.views"/>
+      <view
+            icon="icons/emerald2.gif"
+            class="dk.diku.emerald.EmeraldConsole"
+            category="dk.diku.emerald.views"
+            name="Emerald View"
+            id="dk.diku.emerald.EmeraldConsole"/>
+      <view
+            icon="icons/emerald2.gif"
+            class="dk.diku.emerald.EConsole"
+            category="dk.diku.emerald.views"
+            name="EConsole"
+            id="dk.diku.emerald.EConsole"/>
+		<view
+            icon="icons/emerald2.gif"
+            class="dk.diku.emerald.EMessageConsole"
+            category="dk.diku.emerald.views"
+            name="EMessageConsole"
+            id="dk.diku.emerald.EMessageConsole"/>
+   </extension>
+   <extension
+         id="Builder"
+         name="Emerald Builder"
+         point="org.eclipse.core.resources.builders">
+      <builder >
+         <run class="dk.diku.emerald.EmeraldIncrementalProjectBuilder">
+            <parameter
+                  value="Emerald builder"
+                  name="comment"/>
+            <parameter
+                  value="true"
+                  name="optimize"/>
+         </run>
+      </builder>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="dk.diku.emerald.EmeraldLaunchConfigurationDelegate"
+            public="true"
+            name="Emerald file"
+            id="dk.diku.emerald.EmeraldLaunchConfigurationType"
+            modes="run">
+         <fileExtension extension="m"/>
+      </launchConfigurationType>
+      <launchConfigurationType
+            delegate="dk.diku.emerald.EmeraldMultipleLaunchConfigurationDelegate"
+            public="true"
+            name="Multiple Emerald instances"
+            modes="run"
+            id="dk.diku.emerald.EmeraldMultipleLaunchConfigurationType">
+         <fileExtension extension="m"/>
+      </launchConfigurationType>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            type="dk.diku.emerald.EmeraldLaunchConfigurationType"
+            class="dk.diku.emerald.EmeraldLaunchConfigurationTabGroup"
+            id="dk.diku.emerald.EmeraldLaunchConfigurationTabGroup"/>
+      <launchConfigurationTabGroup
+            type="dk.diku.emerald.EmeraldMultipleLaunchConfigurationType"
+            class="dk.diku.emerald.EmeraldMultipleLaunchConfigurationTabGroup"
+            id="dk.diku.emerald.EmeraldMultipleLaunchConfigurationTabGroup"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="dk.diku.emerald.EmeraldMainPreferencePage"
+            name="Emerald"
+            id="dk.diku.emerald.EmeraldMainPreferencePage"/>
+      <page
+            class="dk.diku.emerald.EmeraldColorPreferencePage"
+            category="dk.diku.emerald.EmeraldMainPreferencePage"
+            name="Colors"
+            id="dk.diku.emerald.EmeraldColorPreferencePage"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            label="Emerald file"
+            icon="icons/emerald2.gif"
+            class="dk.diku.emerald.EmeraldLaunchShortcut"
+            modes="run"
+            id="dk.diku.emerald.EmeraldShortcut">
+         <perspective id="org.eclipse.jdt.ui.JavaPerspective"/>
+      </shortcut>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="Emerald"
+            id="dk.diku.emerald.wizards"/>
+      <wizard
+            class="dk.diku.emerald.EmeraldNewFileWizard"
+            icon="icons/emerald2.gif"
+            category="dk.diku.emerald.wizards"
+            name="Emerald File"
+            id="dk.diku.emerald.EmeraldNewFileWizard"/>
+      <wizard
+            class="dk.diku.emerald.EmeraldNewProjectWizard"
+            icon="icons/emerald2.gif"
+            category="dk.diku.emerald.wizards"
+            project="true"
+            name="Emerald Project"
+            id="dk.diku.emerald.EmeraldNewProjectWizard"/>
+   </extension>
+   <extension
+         point="org.eclipse.core.filebuffers.annotationModelCreation">
+   </extension>
+   <extension
+         point="org.eclipse.ui.ide.resourceFilters">
+      <filter
+            selected="true"
+            pattern="*.x"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            icon="icons/emerald2.gif"
+            configTypeID="dk.diku.emerald.EmeraldLaunchConfigurationType"
+            id="dk.diku.emerald.launchConfigurationTypeImage"/>
+      <launchConfigurationTypeImage
+            icon="icons/emerald2.gif"
+            configTypeID="dk.diku.emerald.EmeraldMultipleLaunchConfigurationType"
+            id="dk.diku.emerald.launchConfigurationTypeImage2"/>
+   </extension>
+
+</plugin>

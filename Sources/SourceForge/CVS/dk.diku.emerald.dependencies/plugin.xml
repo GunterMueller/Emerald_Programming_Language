@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor name="Dependency Editor"  
+            extensions="depend"
+            icon="shapes.gif"
+            default="true"
+            class="dk.diku.emerald.dependencies.DependencyFilesEditor"
+            contributorClass="dk.diku.emerald.dependencies.DependencyFilesEditorActionBarContributor"
+            id="dk.diku.emerald.dependencies.dependencyEditor"
+		/>
+   </extension>
+   <extension point="org.eclipse.ui.newWizards">
+      <wizard name="Emerald Dependencies Diagram"
+              icon="shapes.gif"
+              class="dk.diku.emerald.dependencies.DependencyFilesCreationWizard"
+              id="dk.diku.emerald.dependencies.DependencyFilesCreationWizard">
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="gef.contribution1"
+            objectClass="org.eclipse.core.internal.resources.Project">
+
+         <action
+               label="Create Emerald dependency file for this project"
+               class="dk.diku.emerald.dependencies.CreateDependencyFileAction"
+               enablesFor="1"
+               id="gef.newAction">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.ide.markerResolution">
+      <markerResolutionGenerator
+            class="dk.diku.emerald.dependencies.EmeraldMarkerResolutionGenerator"
+            markerType="dk.diku.emerald.emeraldproblem"/>
+   </extension>
+</plugin>

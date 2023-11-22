@@ -1,0 +1,38 @@
+language: c
+env:
+  global:
+    - EMERALDROOT=$TRAVIS_BUILD_DIR
+    - PATH=$EMERALDROOT/bin:$PATH
+matrix:
+  include:
+  - os: linux
+    addons:
+      apt:
+        packages:
+        - libc6-i386
+        - libc6-dev-i386
+        - linux-libc-dev:i386
+        - libfl-dev:i386
+        - gcc-multilib
+        - realpath
+    env:
+      - EMERALDARCH=i386
+      - EXTRA_CFLAGS=-m32 -Werror
+  - os: linux
+    addons:
+      apt:
+        packages:
+        - libc6
+        - libc6-dev
+        - linux-libc-dev
+        - libfl-dev
+        - gcc-multilib
+        - realpath
+    env:
+      - EMERALDARCH=i686
+      - EXTRA_CFLAGS=-Werror
+install:
+  - make -C vmc
+  - emmake -C ccalls
+  - emmake -C vm
+script: ./vmc/tests/run.sh

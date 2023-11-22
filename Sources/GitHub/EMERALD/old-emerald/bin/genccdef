@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+files=$*
+libdir=${EMERALDROOT}/lib
+ccdef=${libdir}/ccdef
+
+mkdir -p "${libdir}"
+cp /dev/null "${ccdef}"
+
+mi=0
+for file in $files; do
+  modulename="$( printf "%s" "${file%.*}" | tr a-z A-Z )"
+  printf "Generating %s\n" "${modulename}"
+  printf "#define %s %d\n" "${modulename}" ${mi} >> "${ccdef}"
+  mi=$((mi+1))
+
+  ccalls=$( ( egrep "^CCALL" "${file}" || true ) | \
+    perl -pe "s/^CCALL\s*\(\s*//" | \
+    tr , ' ' | \
+    tr -d ")\";\r" )
+
+  if [ -z "${ccalls}" ]; then
+    continue
+  fi
+
+  fi=0
+  while read ccall; do
+    read _ ccallname _ <<< $ccall
+    printf "#define %s %d\n" "${ccallname}" ${fi} >> "${ccdef}"
+    fi=$((fi+1))
+  done <<< $ccalls
+done
